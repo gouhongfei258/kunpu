@@ -1,6 +1,7 @@
 package com.sx.sports.service;
 import com.sx.sports.entity.Role;
 import java.util.List;
+
 public interface RoleService {
     /**
      * 查询全部角色
