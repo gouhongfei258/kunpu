@@ -25,6 +25,7 @@
             {updateBy},update_time=NOW()
         WHERE role_id = #{roleId}
     </update>
+
     <!-- 删除角色 -->
     <delete id="deleteRole" parameterType="int">
         delete from `role` where role_id=#{roleId}

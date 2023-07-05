@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.sx.sports.mapper")
+@MapperScan(basePackages = {"com.sx.sports.mapper","com.sx.sports.mapper"})
 public class SportsApplication {
 
     public static void main(String[] args) {

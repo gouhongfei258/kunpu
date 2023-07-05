@@ -5,9 +5,9 @@ public class Result {
      */
     public static final int CODE_OK = 200;
     /**
-     * 业务错误
+     * 注册错误
      */
-    public static final int CODE_ERR_BUSINESS = 501;
+    public static final int CODE_ERR_REGISTER = 501;
     /**
      * 用户未登录
      */
@@ -16,6 +16,10 @@ public class Result {
      * 系统错误
      */
     public static final int CODE_ERR_SYS = 503;
+    /**
+     * 数据库错误
+     */
+    public static final int CODE_ERR_DATABASE = 504;
     private int code;
     private boolean success;
     private String message;

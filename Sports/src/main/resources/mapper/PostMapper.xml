@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.sports.mapper.PostMapper">
+
+    <!--为一个帖子点赞-->
+    <update id="updateLikes" parameterType="int">
+    update post set Likes = #{Likes} + 1
+     where PostId = #{postId}
+    </update>
+
+    <!-- 查询所有帖子 -->
+    <select id="findAllPost" resultType="Post">
+    select * from post
+    </select>
+
+    <!--通过id查询某个帖子-->
+    <select id="findPostByCode" resultType="Post">
+    select * from post where PostId = #{PostId}
+    </select>
+
+    <!--通过标题模糊查找某个或者某些帖子-->
+    <select id="selectPostPage" resultType="Post" parameterType="String">
+        select * from post where title like concat('%', #{title}, '%')
+    </select>
+
+    <!-- 上传帖子,帖子ID自增，帖子的点赞数初始化为0 -->
+    <insert id="addPost">
+        INSERT INTO post
+        (title,content,userName,Likes)
+        VALUES (#{title},#{content},#{userName},0)
+    </insert>
+
+
+    <!-- 删除帖子 -->
+    <delete id="deletePost">
+    delete from post where PostId =#{PostId}
+    </delete>
+
+</mapper>

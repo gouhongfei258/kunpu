@@ -1,26 +1,29 @@
 package com.sx.sports.Controller;
 
 
+import com.sx.sports.entity.Result;
 import com.sx.sports.entity.Role;
 import com.sx.sports.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
 public class  RegisterController {
     @Autowired
     private RoleService roleService;
-    public String register(@RequestBody Role role){
-        String username = role.getUserName();
-        if(roleService.findRoleByCode(username) != null)
-            return "注册失败！用户名已存在！" ;
-        else
-            roleService.insertRole(role);
+    @PostMapping("/role-register")
+    public Result register(@RequestBody Role role){
 
-        return "注册成功！请回到登录界面!" ;
+        int updateRows = roleService.insertRole(role);
+
+        if(updateRows>0)
+            return Result.ok("注册成功");
+        else
+
+        return Result.err(Result.CODE_ERR_REGISTER,"注册失败");
 
     }
 

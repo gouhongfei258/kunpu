@@ -1,14 +1,14 @@
 package com.sx.sports.entity;
 import java.util.Date;
 public class Post {
-    private String POSTID;
+    private Integer PostId;
     private String title;
     private String content;
     private String userName;
     private Integer Likes;
-    public String getPostID(){return POSTID;}
-    public void setPostID(String POSTID){
-        this.POSTID=POSTID;
+    public Integer getPostID(){return PostId;}
+    public void setPostID(Integer PostId){
+        this.PostId=PostId;
     }
     public String getTitle(){return title;}
     public void setTitle(String title){
@@ -29,7 +29,7 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "POSTID=" + POSTID +'\'' +
+                "PostId=" + PostId +'\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", userName='" + userName +'\'' +

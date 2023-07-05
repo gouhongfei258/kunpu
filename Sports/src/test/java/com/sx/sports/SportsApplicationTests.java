@@ -1,5 +1,6 @@
 package com.sx.sports;
 import com.sx.sports.Controller.HelloController;
+import com.sx.sports.mapper.PostMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
-
+import com.sx.sports.entity.Post;
 
 /**class SportsApplicationTests {
 
@@ -22,40 +23,13 @@ import java.util.List;
 @SpringBootTest
 class SportsApplicationTests {
 	@Autowired
-	private HelloController helloController;
-	@Autowired
-	private RoleMapper roleMapper;
+	private PostMapper postMapper;
+	@Test
+	public void testPageSelect(){
+		System.out.println(postMapper.selectPostPage("2f"));
 
-	@Test
-	public void testFindRoleByCode(){
-		Role role = roleMapper.findRoleByCode("丁宇宁");
-		System.out.println(role);
 	}
-	/**@Test
-	public void testInsertRole(){
-		Role role = new Role();
-		role.setUserName("学生");
-		role.setPwd("student");
-		role.setSex("女");
-		role.setGrade(42);
-		int updateRows = roleMapper.insertRole(role);
-		System.out.println("添加了" + updateRows + "行数据！");
-	}**/
-	/**@Test
-	public void testUpdateRole(){
-		Role role = new Role();
-		role.setRoleId(17);
-		role.setRoleName("学生2");
-		role.setRoleDesc("学生2");
-		role.setUpdateBy(3);
-		int updateRows = roleMapper.updateRole(role);
-		System.out.println("修改了" + updateRows + "行数据！");
-	}
-	@Test
-	public void testDeleteRole(){
-		int updateRows = roleMapper.deleteRole(17);
-		System.out.println("删除了" + updateRows + "行数据！");
-	}**/
+
 
 }
 

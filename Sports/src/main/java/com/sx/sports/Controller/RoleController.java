@@ -28,7 +28,7 @@ public class RoleController {
     public Result addRole(@RequestBody Role role) {
 // 检查该角色是否已经存在
         Role roleTable = roleService.findRoleByCode(role.getUserName());
-        if(roleTable!=null) return Result.err(Result.CODE_ERR_BUSINESS, "该角色已存在");
+        if(roleTable!=null) return Result.err(Result.CODE_ERR_REGISTER, "该角色已存在");
 // 获取当前登录用户id
         int createBy = 1;
 // 将创建人id设置到role对象中
