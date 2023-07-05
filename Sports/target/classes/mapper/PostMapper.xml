@@ -19,13 +19,9 @@
     select * from post where PostId = #{PostId}
     </select>
 
-    <!--通过标题查找某个或者某些帖子-->
+    <!--通过标题模糊查找某个或者某些帖子-->
     <select id="selectPostPage" resultType="Post" parameterType="String">
-        select * from post
-
-        where title like concat('%', #{title}, '%')
-
-
+        select * from post where title like concat('%', #{title}, '%')
     </select>
 
     <!-- 上传帖子,帖子ID自增，帖子的点赞数初始化为0 -->
@@ -34,8 +30,6 @@
         (title,content,userName,Likes)
         VALUES (#{title},#{content},#{userName},0)
     </insert>
-
-
 
 
     <!-- 删除帖子 -->

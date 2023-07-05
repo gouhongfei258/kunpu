@@ -16,29 +16,32 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     @Autowired
     private PostService postService;
-//查询所有帖子
+    //查询所有帖子
     @GetMapping("/allPost")
     public Result allPost(){
         return Result.ok(postService.findAllPost());}
 
-//上传帖子
+    //上传帖子
     @PutMapping("/addPost")
     public Result addPost(@RequestBody Post post){
         return Result.ok(postService.addPost(post));}
 
-//删除帖子
+    //删除帖子
     @DeleteMapping("/deletePost/{postId}")
     public Result deletePost(@PathVariable int postId){
         postService.deletePost(postId);
         return Result.ok("帖子已删除");
     }
 
-//通过ID查找帖子
+    //通过ID查找帖子
     @GetMapping("/findPost")
     public Result findPost(@RequestBody Integer postId){
         return Result.ok(postService.findPostByCode(postId));
     }
-//通过大致标题找帖子
+
+
+
+    //通过大致标题找帖子
     @GetMapping("/findTitle")
     public Result findPostByTitle(@RequestBody Post post){
         String title = post.getTitle();
@@ -46,10 +49,9 @@ public class PostController {
     }
 
 
-
-//点赞
-    @PutMapping("/addLikes")
-    public  Result addLikes(@RequestBody Integer postId){
+    //点赞
+    @PutMapping("/addLikes/{postId}")
+    public  Result addLikes(@PathVariable Integer postId){
            int updateRows = postService.updateLikes(postId);
            if(updateRows>0)
                return Result.ok("点赞成功");

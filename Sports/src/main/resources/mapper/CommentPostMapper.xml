@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.sports.mapper.CommentPostMapper">
+    <!--为一个评论点赞-->
+    <update id="updateLikes">
+        update commentpost set Likes = #{Likes} + 1
+        where commentID = #{commentID}
+    </update>
+
+    <!--评论删除-->
+    <delete id="deleteComment">
+        delete from commentpost where commentID =#{commentID}
+    </delete>
+    
+    <!--查询评论-->
+    <select id="findCommentById" resultType="CommentPost">
+        select * from commentpost where postId = #{postId}
+    </select>
+
+</mapper>

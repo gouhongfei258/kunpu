@@ -1,10 +1,13 @@
 package com.sx.sports.entity;
-import java.util.Date;
+
 public class CommentPost {
     private String commentID;
     private String content;
     private String userName;
     private Integer Likes;
+    private Integer postId;
+
+
     public String getCommentID(){return commentID;}
     public void setCommentID(String commentID){
         this.commentID=commentID;
@@ -21,6 +24,8 @@ public class CommentPost {
     public void setLikes(Integer Likes ){
         this.Likes= Likes;
     }
+    public Integer getPostId(){return postId;}
+
     @Override
     public String toString() {
         return "CommentPost{" +

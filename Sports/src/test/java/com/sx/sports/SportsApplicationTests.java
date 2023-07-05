@@ -11,22 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import com.sx.sports.entity.Post;
+import com.sx.sports.mapper.CommentPostMapper;
 
-/**class SportsApplicationTests {
-
-
-	void contextLoads() {
-	}
-
-}**/
 
 @SpringBootTest
 class SportsApplicationTests {
 	@Autowired
-	private PostMapper postMapper;
+	private CommentPostMapper commentPostMapper;
 	@Test
 	public void testPageSelect(){
-		System.out.println(postMapper.selectPostPage("2f"));
+		System.out.println(commentPostMapper.deleteComment("10"));
 
 	}
 
