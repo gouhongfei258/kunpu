@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/post")
 public class PostController {
@@ -42,10 +44,16 @@ public class PostController {
 
 
     //通过大致标题找帖子
-    @GetMapping("/findTitle")
-    public Result findPostByTitle(@RequestBody Post post){
-        String title = post.getTitle();
-        return Result.ok(postService.selectPostPage(title));
+    @GetMapping("/findByTitle")
+    public Result findPostByTitle(Page page,Post post){
+        //帖子总数
+        int totalNum = postService.selectCount(post);
+        page.setTotalNum(totalNum);
+
+        // 根据条件查询
+        List<Post> userList = postService.selectPostPage(page, post);
+        page.setResultList(userList);
+        return Result.ok(page);
     }
 
 

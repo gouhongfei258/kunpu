@@ -20,8 +20,22 @@
     </select>
 
     <!--通过标题模糊查找某个或者某些帖子-->
-    <select id="selectPostPage" resultType="Post" parameterType="String">
-        select * from post where title like concat('%', #{title}, '%')
+    <select id="selectPostPage" resultType="Post" parameterType="HashMap">
+        select * from post
+        <where>
+            <if test="post.title !=null and post.title !=''">
+                and title LIKE CONCAT('%', #{post.title},'%')
+            </if>
+        </where>
+    </select>
+    <!--获取相关标题帖子数量-->
+    <select id="selectCount" resultType="Integer" parameterType="HashMap">
+        select COUNT(*) from post
+        <where>
+            <if test="post.title!=null and post.title!=''">
+                and title LIKE CONCAT('%', #{post.title},'%')
+            </if>
+        </where>
     </select>
 
     <!-- 上传帖子,帖子ID自增，帖子的点赞数初始化为0 -->

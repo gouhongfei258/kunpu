@@ -1,5 +1,6 @@
 package com.sx.sports.service;
 
+import com.sx.sports.entity.Page;
 import com.sx.sports.entity.Post;
 
 
@@ -21,12 +22,15 @@ public interface PostService {
     //find a post by post_id
     public Post findPostByCode(Integer PostId);
 
-    //find  post by title
-    public List<Post> selectPostPage(String title);
+    //find  post by title and divided page
+    public List<Post> selectPostPage(Page page,Post post);
 
     //add likes to a post
     public int updateLikes(Integer postId);
 
-    //分页模糊查询
+    /**
+     * 查询帖子个数
+     */
+    public int selectCount(Post post);
 
 }

@@ -1,6 +1,7 @@
 package com.sx.sports.mapper;
 import com.sx.sports.entity.Post;
 import java.util.List;
+import java.util.Map;
 
 
 public interface PostMapper {
@@ -18,8 +19,11 @@ public interface PostMapper {
     public Post findPostByCode(Integer PostId);
 
     //find  posts by title
-    public List<Post> selectPostPage(String title);
+    public List<Post> selectPostPage(Map map);
 
     //give likes to post
     public int updateLikes(Integer postId);
+
+    //count post numbers
+    public int selectCount(Map<String ,Object> map);
 }
