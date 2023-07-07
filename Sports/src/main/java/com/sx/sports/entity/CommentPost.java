@@ -25,7 +25,7 @@ public class CommentPost {
         this.Likes= Likes;
     }
     public Integer getPostId(){return postId;}
-
+    public void setPostId(int postId){this.postId = postId;}
     @Override
     public String toString() {
         return "CommentPost{" +

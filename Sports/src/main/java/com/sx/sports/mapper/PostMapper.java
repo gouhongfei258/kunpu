@@ -12,7 +12,7 @@ public interface PostMapper {
     public int addPost(Post post);
 
     //delete your post
-    public int deletePost(int postId);
+    public int deletePost(int PostId);
 
     //find a post by post_id
 
@@ -22,7 +22,7 @@ public interface PostMapper {
     public List<Post> selectPostPage(Map map);
 
     //give likes to post
-    public int updateLikes(Integer postId);
+    public int updateLikes(Integer PostId);
 
     //count post numbers
     public int selectCount(Map<String ,Object> map);

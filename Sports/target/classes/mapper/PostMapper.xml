@@ -5,8 +5,8 @@
 
     <!--为一个帖子点赞-->
     <update id="updateLikes" parameterType="int">
-    update post set Likes = #{Likes} + 1
-     where PostId = #{postId}
+    update post set Likes = Likes + 1
+     where PostId = #{PostId}
     </update>
 
     <!-- 查询所有帖子 -->
@@ -27,7 +27,9 @@
                 and title LIKE CONCAT('%', #{post.title},'%')
             </if>
         </where>
+        LIMIT #{page.limitIndex}, #{page.pageSize}
     </select>
+
     <!--获取相关标题帖子数量-->
     <select id="selectCount" resultType="Integer" parameterType="HashMap">
         select COUNT(*) from post

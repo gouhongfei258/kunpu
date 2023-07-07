@@ -2,20 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sx.sports.mapper.CommentPostMapper">
-    <!--为一个评论点赞-->
-    <update id="updateLikes">
-        update commentpost set Likes = #{Likes} + 1
+
+    <!--上传评论,初始化点赞数为0 通过测试-->
+    <insert id="insertComment" parameterType="commentPost">
+        INSERT INTO commentpost
+        (content,username,postId,Likes)
+        VALUES (#{content},#{userName},#{postId},0)
+    </insert>
+
+    <!--为一个评论点赞 通过测试-->
+    <update id="updateLikes" parameterType="int">
+        update commentpost set Likes = Likes + 1
         where commentID = #{commentID}
     </update>
 
-    <!--评论删除-->
-    <delete id="deleteComment">
+    <!--评论删除 通过测试-->
+    <delete id="deleteComment" parameterType="int">
         delete from commentpost where commentID =#{commentID}
     </delete>
     
-    <!--查询评论-->
-    <select id="findCommentById" resultType="CommentPost">
-        select * from commentpost where postId = #{postId}
+    <!--查询评论,并且进行分页 通过测试-->
+    <select id="findCommentById" resultType="CommentPost" parameterType="HashMap">
+        select * from commentpost
+        <where>
+            <if test="commentPost.postId !=null and postId !=''">
+                and postId = #{commentPost.postId}
+            </if>
+        </where>
+        LIMIT #{page.limitIndex}, #{page.pageSize}
     </select>
 
+    <!--查询当前帖子下所有评论数量 通过测试-->
+    <select id="selectCount" resultType="Integer" parameterType="HashMap">
+        select COUNT(*) from commentpost
+        <where>
+            <if test="commentPost.postId!=null and commentPost.postId!=''">
+                and postId =#{commentPost.postId}
+            </if>
+        </where>
+    </select>
 </mapper>
